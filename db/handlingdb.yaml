@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: handling-db-svc
+  namespace: cargotracker-backend
+spec:
+  ports:
+  - port: 3306
+  selector:
+    app: handling-db
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: handling-db
+  namespace: cargotracker-backend
+spec:
+  selector:
+    matchLabels:
+      app: handling-db
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: handling-db
+    spec:
+      containers:
+      - image: mysql
+        name: handlingdbcontainer
+        env:
+          # Use secret in real usage
+        - name: MYSQL_ROOT_PASSWORD
+          value: password
+        ports:
+        - containerPort: 3306
+          name: handlingdb
+        volumeMounts:
+        - name: handlingdb-persistent-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: handlingdb-persistent-storage
+        persistentVolumeClaim:
+          claimName: handlingdb-pvc-claim

@@ -1,0 +1,114 @@
+spring:
+  profiles: 
+    active: default
+  application:
+    name: "${IMAGE_NAME:template-spring-boot}"
+  cloud:
+    stream:
+      bindings:     
+        cargoHandlingChannel1:
+          destination: cargoHandlings1
+          group: cargoHandlingsQueue1
+        cargoHandlingChannel2:
+          destination: cargoHandlings2
+          group: cargoHandlingsQueue2         
+  datasource:
+    url: "jdbc:mysql://localhost:3306/handlingmsdb?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=EST&useSSL=false"
+    username: handlingmsdb
+    password: password
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest  
+
+swagger:
+  baseApiPackage:
+  - "com.cargotracker"
+  - "com.ibm.health"
+  title: "cargo-handling-service"
+  description: "cargo-handling-service"
+  version: "1.0.0"
+  termsOfServiceUrl: ""
+
+  license: "MIT"
+  licenseUrl: ""
+
+management:
+  endpoints:
+    web:
+      base-path: "/metrics"
+      exposure:
+        include: "*"
+
+server:
+  port: ${PORT:8004}
+
+logging:
+  level:
+    ROOT: ${LOG_LEVEL:INFO}
+    com.ibm.hello: DEBUG
+    com.ibm.cloud_garage: DEBUG
+    org.springframework: ERROR
+    org.springframework.web: WARN
+    org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
+    ch.qos.logback.classic: ERROR
+  pattern:
+    console: "%d{YYYY-dd-MM HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %X{X-B3-TraceId:-} ${spring.application.name} %logger{39}.%M %L - %msg%n"
+---
+spring:
+  profiles: ocp
+  application:
+    name: "${IMAGE_NAME:template-spring-boot}"
+  cloud:
+    stream:
+      bindings:     
+        cargoHandlingChannel1:
+          destination: cargoHandlings1
+          group: cargoHandlingsQueue1
+        cargoHandlingChannel2:
+          destination: cargoHandlings2
+          group: cargoHandlingsQueue2         
+  datasource:
+    url: ${handlingdburl}
+    username: ${handlingdb.user.name}
+    password: ${handlingdb.user.password}
+  rabbitmq:
+    host: ${rabbitmqhost}
+    port: ${rabbitmqport}
+    username: ${rabbitmq.user.name}
+    password: ${rabbitmq.user.password} 
+
+swagger:
+  baseApiPackage:
+  - "com.cargotracker"
+  - "com.ibm.health"
+  title: "cargo-handling-service"
+  description: "cargo-handling-service"
+  version: "1.0.0"
+  termsOfServiceUrl: ""
+
+  license: "MIT"
+  licenseUrl: ""
+
+management:
+  endpoints:
+    web:
+      base-path: "/metrics"
+      exposure:
+        include: "*"
+
+server:
+  port: ${PORT:8004}
+
+logging:
+  level:
+    ROOT: ${LOG_LEVEL:INFO}
+    com.ibm.hello: DEBUG
+    com.ibm.cloud_garage: DEBUG
+    org.springframework: ERROR
+    org.springframework.web: WARN
+    org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
+    ch.qos.logback.classic: ERROR
+  pattern:
+    console: "%d{YYYY-dd-MM HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %X{X-B3-TraceId:-} ${spring.application.name} %logger{39}.%M %L - %msg%n"
