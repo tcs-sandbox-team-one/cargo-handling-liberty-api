@@ -63,31 +63,26 @@ spec:
               value: {{ .Values.logLevel | quote }}
             - name: SPRING_PROFILES_ACTIVE
               value: {{ .Values.profiles.active | quote }}
-            - name: handlingdb.user.name
+            - name: HANDLINGDB_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: cargotracker-handling-credentials
                   key: handlingdb.user.name
-            - name: handlingdb.user.password
+            - name: HANDINGDB_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: cargotracker-handling-credentials
                   key: handlingdb.user.password
-            - name: rabbitmq.user.name
+            - name: RABBITMQ_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: cargotracker-handling-credentials
                   key: rabbitmq.user.name
-            - name: rabbitmq.user.password
+            - name: RABBITMQ_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: cargotracker-handling-credentials
                   key: rabbitmq.user.password 
-            - name: rabbitmq.user.password
-              valueFrom:
-                secretKeyRef:
-                  name: cargotracker-handling-credentials
-                  key: rabbitmq.user.password
             - name: handlingdburl
               valueFrom:
                 configMapKeyRef:

@@ -71,13 +71,13 @@ spring:
           group: cargoHandlingsQueue2         
   datasource:
     url: ${handlingdburl}
-    username: ${handlingdb.user.name}
-    password: ${handlingdb.user.password}
+    username: ${HANDLINGDB_USERNAME}
+    password: ${HANDINGDB_PASSWORD}
   rabbitmq:
     host: ${rabbitmqhost}
     port: ${rabbitmqport}
-    username: ${rabbitmq.user.name}
-    password: ${rabbitmq.user.password} 
+    username: ${RABBITMQ_USERNAME}
+    password: ${RABBITMQ_PASSWORD} 
 
 swagger:
   baseApiPackage:
@@ -99,7 +99,7 @@ management:
         include: "*"
 
 server:
-  port: ${PORT:8004}
+  port: ${PORT:9081}
 
 logging:
   level:
