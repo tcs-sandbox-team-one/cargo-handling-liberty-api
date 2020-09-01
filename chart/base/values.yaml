@@ -17,7 +17,7 @@ credentials:
 
 datasources:
   dburl: "jdbc:mysql://mysql-cargo-dev.bluecargo-dev:3306/handlingmsdb?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=EST&useSSL=false&allowPublicKeyRetrieval=true"
-  mqhost: "rabbitmq-dev-headless"
+  mqhost: "rabbitmq-cargo-dev-headless"
   mqport: "5672"
 
 image:
@@ -56,6 +56,6 @@ vcsInfo:
 
 partOf: "cargotracker-backend-dev"
 
-connectsTo: "mysql-cargo-dev, rabbitmq-dev-headless"
+connectsTo: "mysql-cargo-dev, rabbitmq-cargo-dev"
 
 runtime: spring
