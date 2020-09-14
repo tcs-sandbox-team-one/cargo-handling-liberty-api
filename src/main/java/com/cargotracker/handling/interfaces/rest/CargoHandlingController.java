@@ -12,7 +12,7 @@ import com.cargotracker.handling.interfaces.rest.transform.HandlingActivityRegis
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+//@CrossOrigin(origins = "*", allowedHeaders = "*")
 @Controller    // This means that this class is a Controller
 @RequestMapping("/cargohandling")
 public class CargoHandlingController {
