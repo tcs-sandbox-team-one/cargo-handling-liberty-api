@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cargotracker.handling.application.internal.commandservices.HandlingActivityRegistrationCommandService;
 import com.cargotracker.handling.interfaces.rest.dto.HandlingActivityRegistrationResource;
 import com.cargotracker.handling.interfaces.rest.transform.HandlingActivityRegistrationCommandDTOAssembler;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @Controller    // This means that this class is a Controller
 @RequestMapping("/cargohandling")
 public class CargoHandlingController {
