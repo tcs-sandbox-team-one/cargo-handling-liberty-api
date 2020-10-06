@@ -20,8 +20,7 @@ RUN mkdir -p /config/apps && \
     fi
 
 #FROM ibmcom/websphere-liberty:webProfile7-ubi-min-amd64
-#FROM websphere-liberty:webProfile8
-FROM websphere-liberty:18.0.0.3-webProfile8
+FROM websphere-liberty:webProfile8
 
 
 ARG SSL=false
